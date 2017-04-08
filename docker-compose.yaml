@@ -1,0 +1,21 @@
+version: "2"
+services:
+  db:
+    env_file: ".env"
+    build: "mysql"
+    volumes:
+      - "/tmp/cacti_db:/var/lib/mysql"
+
+  cacti:
+    env_file: ".env"
+    build: "cacti"
+    links:
+      - "db"
+    ports: 
+      - "80:80"
+    volumes:
+      - "/tmp/cacti_rra:/usr/share/webapps/cacti/rra"
+
+volumes:
+  db-data:
+    driver: local
