@@ -13,6 +13,7 @@ install:
 - docker-compose build
 script:
 - docker-compose up -d
+- docker ps -a
 - wget http://localhost/cacti/
 - cat  index.html
 notifications:
